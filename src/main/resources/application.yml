@@ -1,0 +1,28 @@
+tx:
+  sms:
+    appId: 1400479808
+    appKey: fbe16fce0df588dcee0b8021c1a4deec
+    templateId: 855587
+    smsSign: 夕阳红小舍
+    smsEffectiveTime: 5
+
+tx2:
+  acc:
+    appId: 1400479808
+    appKey: fbe16fce0df588dcee0b8021c1a4deec
+    templateId: 866692
+    smsSign: 夕阳红小舍
+    smsEffectiveTime: 5
+
+tx3:
+  act:
+    appId: 1400479808
+    appKey: fbe16fce0df588dcee0b8021c1a4deec
+    templateId: 879220
+    smsSign: 夕阳红小舍
+    smsEffectiveTime: 5
+
+myProps:
+  corePoolSize: 10
+  maxPoolSize: 100
+  queueCapacity: 10

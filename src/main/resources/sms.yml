@@ -1,0 +1,17 @@
+# 腾讯云短信服务配置
+sms-config:
+  # 腾讯云账户密钥对 secretId 和 secretKey
+  secretId: AKID15IONDXVIwCtRviVbv504rQjmDRRudIr
+  secretKey: X4MfxaxKRPYcp121sYyOk8JFznPEoCdr
+  # 短信应用appId和appKey
+  appId: 1400479808
+  appKey: 1001680990
+  # 签名
+  smsSign: 344554
+  # 过期时间
+  expireTime: 10  # 10min
+  # redis存储前缀
+  phonePrefix: pinganky_sms
+  # 模板id
+  templateIds:
+    code: 855587

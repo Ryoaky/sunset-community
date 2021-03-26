@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunset.community.Mapper.LocMapper">
+
+
+    <update id="updateLoc" parameterType="map">
+        update Location set loc=#{loc},province=#{province},city=#{city},
+        cityCode=#{cityCode},street=#{street},district=#{district} where uid=#{uid}
+    </update>
+
+    <insert id="setLoc" parameterType="map">
+        insert into Location
+        values (#{uid},#{loc}, #{province},#{city},#{cityCode},#{street},#{district},#{lat},#{ing})
+    </insert>
+
+    <select id="getLoc" resultType="java.lang.String" parameterType="long">
+        select loc from Location where uid=#{uid}
+    </select>
+</mapper>

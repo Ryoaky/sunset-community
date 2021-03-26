@@ -1,0 +1,38 @@
+Manifest-Version: 1.0
+Main-Class: com.sunset.community.CommunityServiceApplication
+Class-Path: tencentcloud-sdk-java-3.1.201.jar spring-boot-starter-tomcat
+ -2.4.2.jar gson-2.8.6.jar spring-expression-5.3.3.jar netty-handler-4.1
+ .58.Final.jar jul-to-slf4j-1.7.30.jar thymeleaf-spring5-3.0.12.RELEASE.
+ jar jaxp-api-1.4.2.jar spring-boot-starter-jdbc-2.4.2.jar javax.activat
+ ion-api-1.2.0.jar spring-data-keyvalue-2.4.3.jar mysql-connector-java-8
+ .0.13.jar lombok-1.18.16.jar jakarta.annotation-api-1.3.5.jar spring-bo
+ ot-autoconfigure-2.4.2.jar spring-tx-5.3.3.jar attoparser-2.0.5.RELEASE
+ .jar spring-oxm-5.3.3.jar okio-1.12.0.jar commons-logging-1.2.jar Hikar
+ iCP-3.4.5.jar spring-core-5.3.3.jar netty-common-4.1.58.Final.jar jdom-
+ 1.1.3.jar spring-boot-starter-2.4.2.jar thymeleaf-extras-java8time-3.0.
+ 4.RELEASE.jar lettuce-core-6.0.2.RELEASE.jar hamcrest-2.2.jar httpmime-
+ 4.5.13.jar jdom2-2.0.6.jar spring-boot-test-2.4.2.jar qcloudsms-1.0.6.j
+ ar htmlcleaner-2.9.jar reactive-streams-1.0.3.jar jackson-module-parame
+ ter-names-2.11.4.jar httpcore-4.4.14.jar reactor-core-3.4.2.jar spring-
+ boot-starter-logging-2.4.2.jar logback-classic-1.2.3.jar httpclient-4.5
+ .13.jar jsoup-1.10.2.jar log4j-to-slf4j-2.13.3.jar spring-aop-5.3.3.jar
+  spring-jdbc-5.3.3.jar logging-interceptor-2.7.5.jar mybatis-spring-boo
+ t-autoconfigure-1.2.1.jar spring-boot-starter-web-2.4.2.jar jackson-cor
+ e-2.11.4.jar slf4j-api-1.7.30.jar spring-context-support-5.3.3.jar nett
+ y-buffer-4.1.58.Final.jar fastjson-1.2.32.jar xmlunit-core-2.7.0.jar ja
+ xb-api-2.3.1.jar commons-codec-1.15.jar json-20170516.jar mybatis-sprin
+ g-boot-starter-1.2.1.jar spring-context-5.3.3.jar spring-mobile-device-
+ 1.1.5.RELEASE.jar spring-boot-starter-thymeleaf-2.4.2.jar druid-spring-
+ boot-starter-1.1.10.jar thymeleaf-3.0.12.RELEASE.jar netty-codec-4.1.58
+ .Final.jar spring-test-5.3.3.jar okhttp-2.5.0.jar spring-boot-starter-d
+ ata-redis-2.4.2.jar spring-data-commons-2.4.3.jar spring-boot-starter-j
+ son-2.4.2.jar mybatis-3.4.4.jar jackson-databind-2.11.4.jar jackson-ann
+ otations-2.11.4.jar junit-4.13.1.jar spring-web-5.3.3.jar logback-core-
+ 1.2.3.jar jackson-datatype-jdk8-2.11.4.jar log4j-api-2.13.3.jar hamcres
+ t-core-2.2.jar netty-resolver-4.1.58.Final.jar spring-beans-5.3.3.jar d
+ ruid-1.1.10.jar unbescape-1.1.6.RELEASE.jar tomcat-embed-websocket-9.0.
+ 41.jar spring-jcl-5.3.3.jar jackson-datatype-jsr310-2.11.4.jar spring-d
+ ata-redis-2.4.3.jar netty-transport-4.1.58.Final.jar mybatis-spring-1.3
+ .1.jar spring-webmvc-5.3.3.jar jakarta.el-3.0.3.jar spring-boot-2.4.2.j
+ ar tomcat-embed-core-9.0.41.jar snakeyaml-1.27.jar
+

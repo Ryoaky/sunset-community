@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunset.community.Mapper.HelpMapper">
+
+    <select id="getPostHelp" resultType="com.sunset.community.Pojo.Help" parameterType="java.lang.Long">
+        select * from Help where hid in(
+            select hid from HelpPoster where uid=#{uid}
+            )
+    </select>
+    <select id="getJoinHelp" resultType="com.sunset.community.Pojo.Help" parameterType="java.lang.Long">
+        select * from Help where hid in(
+            select hid from HelpJoiner where uid=#{uid}
+            )
+    </select>
+
+    <insert id="addPostHelp" parameterType="com.sunset.community.Pojo.HelpPoster">
+        insert into HelpPoster
+        values (#{uid}, #{hid})
+    </insert>
+    <insert id="addJoinHelp" parameterType="com.sunset.community.Pojo.HelpJoiner">
+        insert into HelpJoiner
+        values (#{uid}, #{hid})
+    </insert>
+
+    <select id="getHelpListByLoc" resultType="com.sunset.community.Pojo.Help" parameterType="java.lang.String">
+        select * from Help where concat(#{loc},'%') like location or location like concat(#{loc},'%')
+    </select>
+
+
+    <insert id="addHelp" parameterType="com.sunset.community.Pojo.Help">
+        insert into Help (name,introduce,location)
+        values (#{name},#{introduce},#{location})
+    </insert>
+    <insert id="joinHelp">
+        insert into HelpJoiner
+        values (#{hid},#{uid})
+    </insert>
+    <insert id="addPoster">
+        insert into HelpPoster (hid,uid)
+        values (#{hid},#{uid})
+    </insert>
+    <insert id="addVoice">
+        insert into voice (hid, url) values (#{hid},#{audio})
+    </insert>
+
+    <select id="getPoster" resultType="java.lang.Long" parameterType="long">
+        select uid from HelpPoster where hid=#{hid}
+    </select>
+
+    <delete id="deleteHelp" parameterType="long">
+        delete from Help where hid=#{hid}
+    </delete>
+
+    <select id="getJoiner" resultType="java.lang.Long" parameterType="long">
+        select uid from HelpJoiner where hid=#{hid}
+    </select>
+
+    <delete id="deleteJoin" parameterType="long">
+        delete from HelpJoiner where hid=#{hid}
+    </delete>
+    <delete id="quitHelp">
+        delete from HelpJoiner where hid=#{hid} and uid=#{uid}
+    </delete>
+    <delete id="deleteHelpPoster" parameterType="long">
+        delete from HelpPoster where hid=#{hid};
+    </delete>
+
+    <select id="getJoinerNums" resultType="java.lang.Integer" parameterType="long">
+        select count(*) from HelpJoiner where hid=#{hid}
+    </select>
+    <select id="isPoster" resultType="java.lang.Integer">
+        select count(*) from HelpPoster where hid=#{hid} and uid=#{uid}
+    </select>
+    <select id="hasJoined" resultType="java.lang.Integer">
+        select count(*) from HelpJoiner where hid=#{hid} and uid=#{uid}
+    </select>
+    <select id="lastId" resultType="java.lang.Long">
+        select max(hid) from Help
+    </select>
+    <select id="getVoice" resultType="java.lang.String" parameterType="long">
+        select url from voice where hid=#{hid}
+    </select>
+    <select id="getHelpByName" resultType="com.sunset.community.Pojo.Help" parameterType="java.lang.String">
+        select * from Help where name like concat('%',#{name},'%')
+    </select>
+
+
+</mapper>

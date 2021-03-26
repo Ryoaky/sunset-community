@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunset.community.Mapper.UserMapper">
+
+    <insert id="setLocation" parameterType="com.sunset.community.Pojo.User" >
+        insert into Location
+        values (DEFAULT,#{name}, #{phone},#{guardianName},#{guardianPhone})
+
+    </insert>
+    <update id="updateUsrMsg" parameterType="com.sunset.community.Pojo.User">
+        update User set phone=#{phone},name=#{name},guardianName=#{guardianName},
+        guardianPhone=#{guardianPhone} where uid=#{uid}
+    </update>
+
+
+    <!--查看手机号码是否已经注册-->
+    <select id="getUserByPhone" resultType="com.sunset.community.Pojo.User" parameterType="string">
+        SELECT * FROM user
+        where phone=#{phone}
+    </select>
+
+    <select id="getUserByUid" resultType="com.sunset.community.Pojo.User" parameterType="long">
+        SELECT * FROM user
+        where uid=#{uid}
+    </select>
+
+    <select id="getUserByName" resultType="com.sunset.community.Pojo.User" parameterType="string">
+        SELECT * FROM user
+        where name likes #{name}
+    </select>
+
+    <!--插入新用户注册数据-->
+    <insert id="addUser" parameterType="com.sunset.community.Pojo.User" >
+        insert into user
+        values (DEFAULT,#{name}, #{phone},#{guardianName},#{guardianPhone},DEFAULT)
+    </insert>
+
+    <select id="getMsgForAcc" resultType="com.sunset.community.Pojo.User" parameterType="long">
+        SELECT * FROM user
+        where uid=#{uid}
+    </select>
+    <select id="getLocation" resultType="java.lang.String" parameterType="long">
+        SELECT loc FROM Location
+        where uid=#{uid}
+    </select>
+    <select id="getActiHistory" resultType="java.lang.Integer">
+        SELECT count(*) FROM activity where aid in
+         (select aid from ActiJoiner
+        where uid = #{uid} ) and postTime like concat(#{year},'%')
+    </select>
+    <select id="getActiHistory2" resultType="java.lang.Integer">
+        SELECT count(*) FROM activity where aid in
+         (select aid from ActiPoster
+        where uid = #{uid} ) and postTime like concat(#{year},'%')
+    </select>
+    <select id="getHelpHistory" resultType="java.lang.Integer">
+        SELECT count(*) FROM help where hid in
+         (select hid from HelpJoiner
+        where uid = #{uid} ) and time like concat(#{year},'%')
+    </select>
+    <select id="getHelpHistory2" resultType="java.lang.Integer">
+        SELECT count(*) FROM help where hid in
+         (select hid from HelpPoster
+        where uid = #{uid} ) and time like concat(#{year},'%')
+    </select>
+    <select id="getRegiYear" resultType="date" parameterType="long">
+        select regiTime from user where uid=#{uid}
+    </select>
+    <select id="getJoinedHelp" resultType="com.sunset.community.Pojo.Help" parameterType="long">
+        select * from Help where hid in
+         (select hid from HelpJoiner where uid=#{uid})
+    </select>
+    <select id="getJoinedActi" resultType="com.sunset.community.Pojo.Activity" parameterType="long">
+        select * from Activity where aid in
+         (select hid from HelpJoiner where uid=#{uid})
+    </select>
+    <select id="getPostedHelp" resultType="com.sunset.community.Pojo.Help" parameterType="long">
+        select * from Help where hid in
+         (select hid from ActiPoster where uid=#{uid})
+    </select>
+    <select id="getPostedActi" resultType="com.sunset.community.Pojo.Activity" parameterType="long">
+        select * from Activity where aid in
+         (select hid from ActiPoster where uid=#{uid})
+    </select>
+    <select id="getUserName" resultType="java.lang.String" parameterType="long">
+        select name from user where uid=#{uid}
+    </select>
+
+
+    <!--    <select id="selectUserForLogin" resultType="cn.java.pojo.User" parameterType="cn.java.pojo.User">-->
+    <!--        SELECT ee.* FROM ebook_entry ee INNER JOIN ebook_catogory ec-->
+    <!--        ON ee.catgoryId=ec.id-->
+    <!--        <if test="_parameter!=0">-->
+    <!--            WHERE ec.id=#{0}-->
+    <!--        </if>-->
+    <!--    </select>-->
+</mapper>

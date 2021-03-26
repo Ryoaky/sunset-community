@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunset.community.Mapper.ActivityMapper">
+    <update id="updateState">
+        update Activity set state=true where aid=#{aid}
+    </update>
+
+
+    <delete id="deleteActi" parameterType="long">
+        delete from Activity where aid=#{aid}
+    </delete>
+    <delete id="deleteActiPoster" parameterType="long">
+        delete from ActiPoster where aid=#{aid}
+    </delete>
+    <delete id="quitActi">
+        delete from ActiJoiner where aid=#{aid} and uid=#{uid}
+    </delete>
+
+    <select id="getPostActi" resultType="com.sunset.community.Pojo.Activity" parameterType="java.lang.Long">
+        select * from Activity where aid in(
+        select aid from ActiPoster where uid=#{uid}
+        )
+    </select>
+
+    <select id="getJoinActi" resultType="com.sunset.community.Pojo.Activity" parameterType="java.lang.Long">
+        select * from Activity where aid in(
+        select aid from ActiJoiner where uid=#{uid}
+        )
+    </select>
+
+    <insert id="addPostActi" parameterType="com.sunset.community.Pojo.ActiPoster">
+        insert into ActiPoster
+        values (#{uid}, #{aid})
+    </insert>
+
+    <insert id="addJoinActi" parameterType="com.sunset.community.Pojo.ActiJoiner">
+        insert into ActiJoiner
+        values (#{uid}, #{aid})
+    </insert>
+
+    <select id="getActiListByLoc" resultType="com.sunset.community.Pojo.Activity"
+            parameterType="java.lang.String">
+        select * from Activity where concat(#{loc},'%') like location or location like concat(#{loc},'%')
+    </select>
+
+    <select id="getActiListByType" resultType="com.sunset.community.Pojo.Activity"
+            parameterType="java.lang.String">
+        select * from Activity where type=#{type}
+    </select>
+
+    <select id="getActiByName" resultType="com.sunset.community.Pojo.Activity"
+            parameterType="java.lang.String">
+        select * from Activity where name like concat('%',#{name},'%')
+    </select>
+    <select id="getActiByAid" resultType="com.sunset.community.Pojo.Activity" parameterType="long">
+        select * from Activity where aid=#{aid}
+    </select>
+
+    <select id="getJoinerNums" resultType="java.lang.Integer" parameterType="long">
+        select count(*) from ActiJoiner where aid=#{aid}
+    </select>
+    <select id="isPoster" resultType="java.lang.Integer">
+        select count(*) from ActiPoster where uid=#{uid} and aid=#{aid}
+    </select>
+    <select id="hasJoined" resultType="java.lang.Integer">
+        select count(*) from ActiJoiner where uid=#{uid} and aid=#{aid}
+    </select>
+    <select id="getPic" resultType="java.lang.String" parameterType="long">
+        select url from image where aid=#{aid}
+    </select>
+    <select id="getNeedNums" resultType="java.lang.Integer" parameterType="long">
+        select needNum from activity where aid=#{aid}
+    </select>
+    <select id="lastId" resultType="java.lang.Long">
+        select max(aid) from activity
+    </select>
+    <select id="selectNowAct" resultType="com.sunset.community.Pojo.Activity" parameterType="java.lang.String">
+        SELECT * FROM Activity where endTime like concat(#{year},'%',#{month},'%',#{day},'%') and state=false
+    </select>
+    <select id="getJoiners" resultType="com.sunset.community.Pojo.User" parameterType="long">
+        select uid from ActiJoiner where aid=#{aid}
+    </select>
+    <select id="getPoster" resultType="com.sunset.community.Pojo.User" parameterType="long">
+        select uid from ActiPoster where aid=#{aid}
+    </select>
+    <select id="getActiPic" resultType="java.lang.String" parameterType="long">
+        select url from image where aid=#{aid}
+    </select>
+    <select id="getActiAudio" resultType="java.lang.String" parameterType="long">
+        select url from audio where aid=#{aid}
+    </select>
+
+
+    <insert id="addActi" parameterType="com.sunset.community.Pojo.Activity">
+        insert into Activity (name,needNum,startTime,endTime,intro,state,location,type,detailLoc)
+        values (#{name},#{needNum},#{startTime},#{endTime},#{intro},#{state},#{location},#{type},#{detailLoc})
+    </insert>
+    <insert id="joinActi">
+        insert into ActiJoiner
+        values (#{aid},#{uid})
+    </insert>
+
+
+    <insert id="addImage">
+        insert into image (aid, url) values (#{aid},#{pic})
+    </insert>
+    <insert id="addAudio">
+        insert into audio (aid, url) values (#{aid},#{audio})
+    </insert>
+    <insert id="addPoster">
+        insert into ActiPoster (aid,uid) values (#{aid},#{uid})
+    </insert>
+</mapper>
